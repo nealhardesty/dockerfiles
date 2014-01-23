@@ -43,12 +43,21 @@ RUN echo "yes" | apt-get install -y --force-yes oracle-java6-installer
 
 ENV JAVA_HOME /usr/lib/jvm/java-6-oracle
 
+RUN apt-get install -y bigtop-utils
+RUN bash -c 'echo "export JAVA_HOME=/usr/lib/jvm/java-6-oracle" >> /etc/profile'
+RUN bash -c 'echo "export JAVA_HOME=/usr/lib/jvm/java-6-oracle" >> /etc/default/bigtop-utils'
+
 RUN apt-get install -y hadoop-hdfs-namenode
-#RUN /etc/init.d/hadoop-hdfs-namenode init
+RUN /etc/init.d/hadoop-hdfs-namenode init
+
+RUN echo '<configuration> <property> <name>fs.defaultFS</name> <value>hdfs://localhost/</value> </property> </configuration>' > /etc/hadoop/conf/core-site.xml
 
 RUN apt-get install -y hadoop-hdfs-datanode
+
 #RUN service hadoop-hdfs-namenode start
 #RUN service hadoop-hdfs-datanode start
+
+RUN apt-get install -y hadoop-yarn hadoop-yarn-resourcemanager hadoop-yarn-nodemanager
 
 #sudo -u hdfs hadoop fs -mkdir -p /user/$USER
 #sudo -u hdfs hadoop fs -chown $USER:$USER /user/$USER
@@ -70,7 +79,7 @@ RUN apt-get install -y hadoop-hdfs-datanode
 #sudo -u hdfs hadoop fs -mkdir -p /tmp/hadoop-yarn/staging/history/done_intermediate
 #sudo -u hdfs hadoop fs -chmod -R 1777 /tmp/hadoop-yarn/staging/history/done_intermediate
 #sudo -u hdfs hadoop fs -chown -R mapred:mapred /tmp/hadoop-yarn/staging
-#sudo service hadoop-yarn-resourcemanager start
-#sudo service hadoop-yarn-nodemanager start
-#hadoop fs -lsr /
+#RUN sudo service hadoop-yarn-resourcemanager start
+#RUN sudo service hadoop-yarn-nodemanager start
+#RUN hadoop fs -lsr /
 #hadoop jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples*.jar pi 10 1000
