@@ -3,8 +3,7 @@
 #
 # Base quantal build
 
-FROM	ubuntu:quantal
+FROM	ubuntu:wily
 MAINTAINER	Neal Hardesty <nealhardesty@yahoo.dot.com>
 
-ADD https://raw2.github.com/nealhardesty/dockerfiles/master/sources.list.quantal /etc/apt/sources.list
-RUN apt-get update
+RUN apt-get update && apt-get upgrade -y
