@@ -1,0 +1,5 @@
+#!/bin/bash
+
+DOCKER_HOST=$(netstat -rn |grep ^0.0.0.0 |awk '{printf $2}')
+DOCKER_PORT=2375
+docker-binary -H tcp://$DOCKER_HOST:$DOCKER_PORT $*
