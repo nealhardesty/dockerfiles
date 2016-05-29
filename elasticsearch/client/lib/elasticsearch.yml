@@ -1,0 +1,8 @@
+cluster.name: aardvark
+node.master: false
+node.data: false
+discovery.zen.ping.unicast.hosts: ["esmaster00", "esmaster01", "esmaster02", "esmaster03", "esmaster04"]
+discovery.zen.minimum_master_nodes: 3
+discovery.zen.ping.multicast.enabled: false
+gateway.recover_after_nodes: 3
+network.host: ["_site_", "_local_"]
