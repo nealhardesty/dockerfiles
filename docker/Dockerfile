@@ -2,7 +2,7 @@ FROM ubuntu:latest
 MAINTAINER nealhardesty@yahoo.com
 
 RUN apt-get update \
-    && apt-get install -y wget net-tools git ruby groff less curl \
+    && apt-get install -y wget net-tools git groff less curl \
     && rm -rf /var/lib/apt/lists/*
 
 # I heard you like Docker.  So I put Docker in your Docker so you can Docker while you Docker.
