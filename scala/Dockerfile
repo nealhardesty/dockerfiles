@@ -15,3 +15,23 @@ RUN \
     && rm -rf /var/cache/oracle-jdk8-installer \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+ENV SCALA_VERSION 2.11.7
+ENV SCALA_TARBALL http://downloads.typesafe.com/scala/2.11.7/scala-$SCALA_VERSION.tgz
+ENV SCALA_HOME /usr/local/
+
+ENV SBT_VERSION 0.13.8
+ENV SBT_LAUNCH https://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/$SBT_VERSION/sbt-launch.jar
+
+RUN curl -s $SCALA_TARBALL -o /var/tmp/scala.tgz \
+    && tar --strip-components 1 -xvf /var/tmp/scala.tgz -C $SCALA_HOME \
+    && rm /var/tmp/scala.tgz
+
+RUN curl -vLs $SBT_LAUNCH -o /usr/local/bin/sbt-launch.jar
+
+ADD ./lib/sbt /usr/local/bin/sbt
+
+# Will precache all the necessary jars
+RUN sbt
+
+CMD ["scala"]
