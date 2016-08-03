@@ -1,0 +1,4 @@
+#!/bin/bash
+
+kafka-run-class kafka.tools.GetOffsetShell --broker-list kafka:9092 --time -1 --offsets 1 --topic "$1"
+

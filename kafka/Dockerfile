@@ -37,6 +37,8 @@ RUN echo "listeners=PLAINTEXT://kafka:9092" >> /etc/kafka/server.properties \
 
 
 ADD ./lib/start_kafka.sh /start_kafka.sh
+ADD ./lib/topic-ls /usr/local/bin/topic-ls
+ADD ./lib/topic-count /usr/local/bin/topic-count
 
 # Zookeeper
 EXPOSE 2181
