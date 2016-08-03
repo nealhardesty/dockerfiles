@@ -31,6 +31,8 @@ ADD ./lib/start-spark-master.sh /start-spark-master.sh
 ADD ./lib/start-spark-slave.sh /start-spark-slave.sh
 ADD ./lib/start-spark.sh /start-spark.sh
 
+ADD ./lib/sparktest.sh /sparktest.sh
+
 ENV SPARK_WORKER_PORT=7078
 ENV SLAVE_MEMORY=1g
 ENV SLAVE_CORES=1
