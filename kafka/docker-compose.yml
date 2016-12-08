@@ -3,6 +3,7 @@ version: '2'
 services:
   kafka:
     build: .
+    image: kafka
     ports:
       - "9092:9092"
       - "2181:2181"
