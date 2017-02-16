@@ -23,6 +23,9 @@ ADD ./lib/sudoers /etc/sudoers
 
 ADD ./lib/sbt /usr/local/bin/sbt
 
+# Go 1.7.5
+RUN curl -s -o /var/tmp/go.tgz https://storage.googleapis.com/golang/go1.7.5.linux-amd64.tar.gz && tar -xzf /var/tmp/go.tgz -C /usr/local/ && rm /var/tmp/go.tgz && echo 'export PATH=$PATH:/usr/local/go/bin' >> /etc/profile
+
 USER neal
 WORKDIR /home/neal
 
