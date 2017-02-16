@@ -21,6 +21,8 @@ RUN \
 # No passwords for sudo, yay!
 ADD ./lib/sudoers /etc/sudoers
 
+ADD ./lib/sbt /usr/local/bin/sbt
+
 USER neal
 WORKDIR /home/neal
 
