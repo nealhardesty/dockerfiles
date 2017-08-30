@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+  socat:
+    image: nealhardesty/socat
+    build: .
+    network_mode: host
+
