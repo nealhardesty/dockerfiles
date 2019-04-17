@@ -14,5 +14,5 @@ mkdir -p ~/notebooks
 docker stop jupyter || echo was not running
 docker rm jupyter || echo did not exist
 
-docker run -d -ti --init --rm --name jupyter -v ~/notebooks:/home/jupyter/notebooks -p 8888:8888 nealhardesty/jupyter
+docker run -d -ti --init --rm --name jupyter -v ~/.aws:/home/jupyter/.aws -v ~/notebooks:/home/jupyter/notebooks -p 8888:8888 nealhardesty/jupyter
 #docker run -ti --init --rm --name jupyter -v ~/:/home/jupyter -p 8888:8888 nealhardesty/jupyter
