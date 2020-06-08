@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+  labels:
+    app: quakejs
+  name: quakejs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: quakejs
+  strategy:
+    rollingUpdate:
+      maxSurge: 0%
+      maxUnavailable: 100%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: quakejs
+    spec:
+      containers:
+      - image: nealhardesty/quakejs:latest
+        imagePullPolicy: Always
+        name: quakejs
+        resources: {}
+        env:
+          - name: SERVER
+            value: {{ .Values.hostname | quote }}
+          - name: HTTP_PORT
+            value: "80"
+      restartPolicy: Always

@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule ^.*$ "http://www.quakejs.com/play?connect quake.crunchbase.io:27960" [L,R=301]
